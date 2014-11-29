@@ -104,6 +104,10 @@ class SurveyLanguageSetting extends LSActiveRecord
             array('surveyls_url','LSYii_Validators','isUrl'=>true),
             array('surveyls_urldescription','LSYii_Validators'),
 
+            array('surveyls_pdfheader_bool','LSYii_Validators'),
+            array('surveyls_pdfheader_title','LSYii_Validators'),
+            array('surveyls_pdfheader_string','LSYii_Validators'),
+
             array('surveyls_dateformat', 'numerical', 'integerOnly'=>true, 'min'=>'1', 'max'=>'12', 'allowEmpty'=>true), 
             array('surveyls_numberformat', 'numerical', 'integerOnly'=>true, 'min'=>'0', 'max'=>'1', 'allowEmpty'=>true), 
         );

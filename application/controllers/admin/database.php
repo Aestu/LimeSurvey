@@ -925,11 +925,17 @@ class database extends Survey_Common_Action
                     $description = Yii::app()->request->getPost('description_'.$langname);
                     $welcome = Yii::app()->request->getPost('welcome_'.$langname);
                     $endtext = Yii::app()->request->getPost('endtext_'.$langname);
+                    $sPDFHeader = Yii::app()->request->getPost('pdfheaderbool_'.$langname);
+                    $sPDFHeaderTitle = Yii::app()->request->getPost('pdfheadertitle_'.$langname);
+                    $sPDFHeaderString = Yii::app()->request->getPost('pdfheaderstring_'.$langname);
 
                     $short_title=$oFixCKeditor->fixCKeditor($short_title);
                     $description=$oFixCKeditor->fixCKeditor($description);
                     $welcome=$oFixCKeditor->fixCKeditor($welcome);
                     $endtext=$oFixCKeditor->fixCKeditor($endtext);
+                    $sPDFHeader = $oFixCKeditor->fixCKeditor($sPDFHeader);
+                    $sPDFHeaderTitle = $oFixCKeditor->fixCKeditor($sPDFHeaderTitle);
+                    $sPDFHeaderString = $oFixCKeditor->fixCKeditor($sPDFHeaderString);
 
                     $data = array(
                     'surveyls_title' => $short_title,
@@ -938,6 +944,9 @@ class database extends Survey_Common_Action
                     'surveyls_endtext' => $endtext,
                     'surveyls_url' => $sURL,
                     'surveyls_urldescription' => $sURLDescription,
+                    'surveyls_pdfheader_bool' => $sPDFHeader,
+                    'surveyls_pdfheader_title' => $sPDFHeaderTitle,
+                    'surveyls_pdfheader_string' => $sPDFHeaderString,
                     'surveyls_dateformat' => Yii::app()->request->getPost('dateformat_'.$langname),
                     'surveyls_numberformat' => Yii::app()->request->getPost('numberformat_'.$langname)
                     );

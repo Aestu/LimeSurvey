@@ -26,6 +26,28 @@
     <li><label for='urldescrip_<?php echo $esrow['surveyls_language']; ?>'><?php $clang->eT("URL description:"); ?></label>
         <input type='text' id='urldescrip_<?php echo $esrow['surveyls_language']; ?>' size='80' name='urldescrip_<?php echo $esrow['surveyls_language']; ?>' value="<?php echo $esrow['surveyls_urldescription']; ?>" />
     </li>
+    <li><label for='pdfheaderbool'><?php $clang->eT("Show header in PDF answer export?") ; ?></label>
+        <select id='pdfheaderbool' name='pdfheaderbool'>
+            <option value='Y'
+                <?php if ($esrow['pdfheaderbool'] == "Y") { ?>
+                    selected='selected'
+                    <?php } ?>
+                ><?php $clang->eT("Yes") ; ?>
+            </option>
+            <option value='N'
+                <?php if (!$esrow['pdfheaderbool'] || $esrow['pdfheaderbool'] == "N") { ?>
+                    selected='selected'
+                    <?php } ?>
+                ><?php $clang->eT("No") ; ?>
+            </option>
+        </select>
+    </li>
+    <li><label for='pdfheadertitle_<?php echo $esrow['surveyls_language']; ?>'><?php $clang->eT("PDF header title:"); ?></label>
+        <input type='text' id='pdfheadertitle_<?php echo $esrow['surveyls_language']; ?>' size='80' maxlength='256' name='pdfheadertitle_<?php echo $esrow['surveyls_language']; ?>' value="<?php echo $esrow['surveyls_pdfheader_title']; ?>" />
+    </li>
+    <li><label for='pdfheaderstring_<?php echo $esrow['surveyls_language']; ?>'><?php $clang->eT("PDF header string:"); ?></label>
+        <input type='text' id='pdfheaderstring_<?php echo $esrow['surveyls_language']; ?>' size='80' maxlength='256' name='pdfheaderstring_<?php echo $esrow['surveyls_language']; ?>' value="<?php echo $esrow['surveyls_pdfheader_string']; ?>" />
+    </li>
     <li><label for='dateformat_<?php echo $esrow['surveyls_language']; ?>'><?php $clang->eT("Date format:"); ?></label>
         <select size='1' id='dateformat_<?php echo $esrow['surveyls_language']; ?>' name='dateformat_<?php echo $esrow['surveyls_language']; ?>'>
             <?php foreach (getDateFormatData(0,Yii::app()->session['adminlang']) as $index=>$dateformatdata)

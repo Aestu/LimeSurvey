@@ -1259,6 +1259,14 @@ function db_upgrade_all($iOldDBVersion) {
             $oDB->createCommand()->update('{{settings_global}}',array('stg_value'=>178),"stg_name='DBVersion'");
         }
 
+        if ($iOldDBVersion < 179)
+        {
+            addColumn('{{surveys_languagesettings}}','surveyls_pdfheader_bool',"{$sVarchar}(1) default 'N'");
+            addColumn('{{surveys_languagesettings}}','surveyls_pdfheader_title',"{$sVarchar}(256)");
+            addColumn('{{surveys_languagesettings}}','surveyls_pdfheader_string',"{$sVarchar}(256)");
+            $oDB->createCommand()->update('{{settings_global}}',array('stg_value'=>179),"stg_name='DBVersion'");
+        }
+
         $oTransaction->commit();
         // Activate schema caching
         $oDB->schemaCachingDuration=3600;

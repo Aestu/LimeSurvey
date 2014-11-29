@@ -1579,6 +1579,9 @@ class SurveyAdmin extends Survey_Common_Action
             $sDescription = $_POST['description'];
             $sWelcome = $_POST['welcome'];
             $sURLDescription = $_POST['urldescrip'];
+            $sPDFHeader = $_POST['pdfheaderbool'];
+            $sPDFHeaderTitle = $_POST['pdfheadertitle'];
+            $sPDFHeaderString = $_POST['pdfheaderstring'];
             if (Yii::app()->getConfig('filterxsshtml'))
             {
                 //$p = new CHtmlPurifier();
@@ -1592,12 +1595,17 @@ class SurveyAdmin extends Survey_Common_Action
             $sDescription = html_entity_decode($sDescription, ENT_QUOTES, "UTF-8");
             $sWelcome = html_entity_decode($sWelcome, ENT_QUOTES, "UTF-8");
             $sURLDescription = html_entity_decode($sURLDescription, ENT_QUOTES, "UTF-8");
+            $sPDFHeader = html_entity_decode($sPDFHeader, ENT_QUOTES, "UTF-8");
+            $sPDFHeaderTitle = html_entity_decode($sPDFHeaderTitle, ENT_QUOTES, "UTF-8");
+            $sPDFHeaderString = html_entity_decode($sPDFHeaderString, ENT_QUOTES, "UTF-8");
 
             // Fix bug with FCKEditor saving strange BR types
             $sTitle = fixCKeditorText($sTitle);
             $sDescription = fixCKeditorText($sDescription);
             $sWelcome = fixCKeditorText($sWelcome);
-
+            $sPDFHeader = fixCKeditorText($sPDFHeader);
+            $sPDFHeaderTitle = fixCKeditorText($sPDFHeaderTitle);
+            $sPDFHeaderString = fixCKeditorText($sPDFHeaderString);
 
             // Insert base language into surveys_language_settings table
             $aInsertData = array('surveyls_survey_id' => $iNewSurveyid,
@@ -1608,6 +1616,9 @@ class SurveyAdmin extends Survey_Common_Action
             'surveyls_urldescription' => $_POST['urldescrip'],
             'surveyls_endtext' => $_POST['endtext'],
             'surveyls_url' => $_POST['url'],
+            'surveyls_pdfheader_bool' => $sPDFHeader,
+            'surveyls_pdfheader_title' => $sPDFHeaderTitle,
+            'surveyls_pdfheader_string' => $sPDFHeaderString,
             'surveyls_dateformat' => (int) $_POST['dateformat'],
             'surveyls_numberformat' => (int) $_POST['numberformat']
             );
