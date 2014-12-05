@@ -17,7 +17,21 @@
             $this->subscribe('beforePermissionSetSave'); 
             $this->subscribe('beforeParticipantSave'); 
             $this->subscribe('beforeParticipantDelete'); 
+            $this->subscribe('beforeLogout');
         }
+
+        public function beforeLogout()
+        {
+            $event = $this->getEvent();
+            $iUserID=$this->api->getCurrentUser()->uid;
+            $oAutoLog = $this->api->newModel($this, 'log');
+            $oAutoLog->uid=$iUserID;
+            $oAutoLog->entity='user';
+            $oAutoLog->entityid=$iUserID;
+            $oAutoLog->action='beforeLogout';
+            $oAutoLog->save();
+        }
+
 
         /**
         * Saves permissions changes to the audit log

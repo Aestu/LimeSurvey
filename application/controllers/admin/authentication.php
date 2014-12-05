@@ -106,18 +106,18 @@ class Authentication extends Survey_Common_Action
     public function logout()
     {
         // Fetch the current user
-        $plugin = App()->user->getState('plugin', null);    // Save for afterLogout, current user will be destroyed by then
+        // $plugin = App()->user->getState('plugin', null);    // Save for afterLogout, current user will be destroyed by then
                  
         /* Adding beforeLogout event */
         $beforeLogout = new PluginEvent('beforeLogout');
-        App()->getPluginManager()->dispatchEvent($beforeLogout, array($plugin));
+        App()->getPluginManager()->dispatchEvent($beforeLogout); //, array($plugin));
 
         App()->user->logout();
         App()->user->setFlash('loginmessage', gT('Logout successful.'));
 
         /* Adding afterLogout event */
         $event = new PluginEvent('afterLogout');
-        App()->getPluginManager()->dispatchEvent($event, array($plugin));
+        App()->getPluginManager()->dispatchEvent($event); //, array($plugin));
         
         $this->getController()->redirect(array('/admin/authentication/sa/login'));
     }
